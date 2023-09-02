@@ -1,6 +1,6 @@
 # API-Rest-Legado
 
-![header](![image](https://github.com/JoaoEduardoFM/API-Rest-Legado/assets/90796699/446f06d8-70cd-4ed6-b2a9-2a6428bec6ab)
+![header](https://user-images.githubusercontent.com/90796699/229766788-1b0a5861-7416-4a7d-8ed9-f1bcdfa3b8a6.png)
 
 🚀  Projeto de Estudo de Consultas SQL Nativas em Aplicação REST Legado 🚀
 
