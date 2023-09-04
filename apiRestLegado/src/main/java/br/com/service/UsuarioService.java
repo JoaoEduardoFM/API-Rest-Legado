@@ -169,7 +169,7 @@ public class UsuarioService {
 	
 	public ResponseEntity<?> buscaPorIdade(Integer idade){
 		 Response response = new Response();
-		List<Usuario> retorno= usuarioRepository.buscaPorIdade(idade);
+		List<Usuario> retorno= repositoryCustom.buscaPorIdade(idade);
 		if(retorno.isEmpty()) {
 			response.setMessage("Nenhum registro encontrado.");
 			response.setStatus(HttpStatus.NOT_FOUND);

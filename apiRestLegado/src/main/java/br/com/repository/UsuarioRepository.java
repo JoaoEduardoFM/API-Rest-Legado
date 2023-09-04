@@ -1,9 +1,6 @@
 package br.com.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.model.entity.Usuario;
@@ -17,8 +14,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 	
 	@Query("FROM usuario u WHERE u.sobrenome like :sobrenome")//JPQL
 	List<Usuario> buscaPorSobrenome(String sobrenome);
-	*/
 	
 	@Query("FROM usuario u WHERE u.idade like :idade")//JPQL
-	List<Usuario> buscaPorIdade(Integer idade);
+	List<Usuario> buscaPorIdade(Integer idade);*/
 }

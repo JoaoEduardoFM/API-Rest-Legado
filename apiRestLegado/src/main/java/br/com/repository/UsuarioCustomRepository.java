@@ -88,7 +88,7 @@ public class UsuarioCustomRepository {
 	}
 	
 	/**
-	 * @apiNote Busca por nome
+	 * @apiNote Busca por nome.
 	 * @param nome
 	 */
 	public List<Usuario> buscaPorNome(String nome) {
@@ -100,7 +100,7 @@ public class UsuarioCustomRepository {
     }
 	
 	/**
-	 * @apiNote Busca por sobrenome
+	 * @apiNote Busca por sobrenome.
 	 * @param sobrenome
 	 */
 	public List<Usuario> buscaPorSobrenome(String sobrenome) {
@@ -108,6 +108,18 @@ public class UsuarioCustomRepository {
 
         return entityManager.createQuery(jpql, Usuario.class)
                 .setParameter("sobrenome", "%" + sobrenome + "%")
+                .getResultList();
+    }
+	
+	/**
+	 * @apiNote Busca por idade.
+	 * @param sobrenome
+	 */
+	public List<Usuario> buscaPorIdade(Integer idade) {
+        String jpql = "SELECT u FROM usuario u WHERE u.idade = :idade";
+
+        return entityManager.createQuery(jpql, Usuario.class)
+                .setParameter("idade", + idade)
                 .getResultList();
     }
 	
