@@ -25,11 +25,11 @@ public class UsuarioService {
 		Response retorno = new Response();
 		boolean validaId = repositoryCustom.validaId(usuario.getCpf());
 
+		// caso o cpf não for preenchido retorna o maior valor do cpf + 1
 		if(usuario.getCpf() == null) {
-			retorno.setMessage("O cpf deve ser informado.");
-			retorno.setStatus(HttpStatus.BAD_REQUEST);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(retorno);
+			usuario.setCpf(repositoryCustom.buscarMaiorCPF(usuario.getCpf()));
 		}
+		
 		if (validaId == true) {
 			retorno.setMessage("Informe um cpf não existente.");
 			retorno.setStatus(HttpStatus.BAD_REQUEST);

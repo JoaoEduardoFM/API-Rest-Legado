@@ -142,4 +142,18 @@ public class UsuarioCustomRepository {
 	    	return false;
 	    }
 	}
+	
+	/**
+	 * @apiNote Busca maior cpf cadastrado
+	 * @param cpf
+	 * @return Long.
+	 */
+	public Long buscarMaiorCPF(Long cpf) {
+        // Consulta o maior CPF na tabela
+        String maxCpfSql = "SELECT MAX(cpf) FROM usuario";
+        BigInteger maxCpf = (BigInteger) entityManager.createNativeQuery(maxCpfSql)
+                .getSingleResult();
+
+        return cpf == null ? maxCpf.longValue() + 1 : cpf;
+    }
 }
