@@ -3,7 +3,10 @@ package br.com.model.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Entity(name = "usuario")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Usuario {
 
 	@Id

@@ -128,7 +128,7 @@ public class UsuarioCustomRepository {
 	 * @param cpf
 	 * @return 1 exite id. 0 não existe.
 	 */
-	public int validaId(Long cpf) {
+	public Boolean validaId(Long cpf) {
 		// Consulta de contagem para verificar se o CPF existe
 	    String countSql = "SELECT COUNT(*) FROM usuario WHERE cpf = ?";
 	    BigInteger count = (BigInteger) entityManager.createNativeQuery(countSql)
@@ -137,9 +137,9 @@ public class UsuarioCustomRepository {
 
 	    // Verifica se o CPF existe
 	    if (count.intValue() > 0) {	   
-	        return 1;
+	        return true;
 	    }else {
-	    	return 0;
+	    	return false;
 	    }
 	}
 }

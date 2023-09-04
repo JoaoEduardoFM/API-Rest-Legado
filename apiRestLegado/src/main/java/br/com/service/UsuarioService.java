@@ -23,14 +23,14 @@ public class UsuarioService {
 	
 	public ResponseEntity<?> cadastraUsuario(Usuario usuario) {
 		Response retorno = new Response();
-		int validaId = repositoryCustom.validaId(usuario.getCpf());
+		boolean validaId = repositoryCustom.validaId(usuario.getCpf());
 
 		if(usuario.getCpf() == null) {
 			retorno.setMessage("O cpf deve ser informado.");
 			retorno.setStatus(HttpStatus.BAD_REQUEST);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(retorno);
 		}
-		if (validaId != 0) {
+		if (validaId == true) {
 			retorno.setMessage("Informe um cpf não existente.");
 			retorno.setStatus(HttpStatus.BAD_REQUEST);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(retorno);
@@ -48,7 +48,7 @@ public class UsuarioService {
 	
 	public ResponseEntity<?> atualizaUsuario(Usuario usuario) {
 		Response retorno = new Response();
-		int validaId = repositoryCustom.validaId(usuario.getCpf());
+		boolean validaId = repositoryCustom.validaId(usuario.getCpf());
 		
 		if(usuario.getCpf() == null) {
 			retorno.setMessage("O cpf deve ser informado.");
@@ -56,7 +56,7 @@ public class UsuarioService {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(retorno);
 		}
 
-		if (validaId == 0) {
+		if (validaId == false) {
 			retorno.setMessage("O cpf informado não existe.");
 			retorno.setStatus(HttpStatus.BAD_REQUEST);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(retorno);
@@ -75,7 +75,7 @@ public class UsuarioService {
 	public ResponseEntity<?> deletaUsuario(Long cpf) {
 		Response retorno = new Response();
 		Long remove = repositoryCustom.deletaUsuarioNative(cpf);
-		int validaId = repositoryCustom.validaId(cpf);
+		boolean validaId = repositoryCustom.validaId(cpf);
 		
 		if(cpf == null) {
 			retorno.setMessage("O cpf deve ser informado.");
@@ -87,7 +87,7 @@ public class UsuarioService {
 			retorno.setMessage("Registro deletado com sucesso.");
 			retorno.setStatus(HttpStatus.OK);
 		} else {
-			if (validaId == 0) {
+			if (validaId == false) {
 				retorno.setMessage("O id informado não existe.");
 				retorno.setStatus(HttpStatus.BAD_REQUEST);
 			} else {
@@ -100,7 +100,7 @@ public class UsuarioService {
 	}
 	
 	public ResponseEntity<?> buscaUsuarioCpf(Long cpf) {
-		int validaId = repositoryCustom.validaId(cpf);
+		boolean validaId = repositoryCustom.validaId(cpf);
 		Response retorno = new Response();
 		
 		if(cpf == null) {
@@ -109,7 +109,7 @@ public class UsuarioService {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(retorno);
 		}
 		
-		if(validaId == 0) {
+		if(validaId == false) {
 			retorno.setMessage("Registro não encontrado.");
 			retorno.setStatus(HttpStatus.NOT_FOUND);
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(retorno);
@@ -147,7 +147,15 @@ public class UsuarioService {
 	
 	public ResponseEntity<?> buscaPorNome(String nome){
 		 Response response = new Response();
+		 
+		 if(nome == null) {
+				response.setMessage("O nome deve ser informado.");
+				response.setStatus(HttpStatus.NOT_FOUND);
+		        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+			}
+		 
 		List<Usuario> retorno= repositoryCustom.buscaPorNome(nome);
+		
 		if(retorno.isEmpty()) {
 			response.setMessage("Nenhum registro encontrado.");
 			response.setStatus(HttpStatus.NOT_FOUND);
@@ -158,7 +166,15 @@ public class UsuarioService {
 	
 	public ResponseEntity<?> buscaPorSobrenome(String sobrenome){
 		 Response response = new Response();
+		 
+		 if(sobrenome == null) {
+				response.setMessage("O sobrenome deve ser informado.");
+				response.setStatus(HttpStatus.NOT_FOUND);
+		        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+			}
+		 
 		List<Usuario> retorno= repositoryCustom.buscaPorSobrenome(sobrenome);
+		
 		if(retorno.isEmpty()) {
 			response.setMessage("Nenhum registro encontrado.");
 			response.setStatus(HttpStatus.NOT_FOUND);
@@ -169,7 +185,15 @@ public class UsuarioService {
 	
 	public ResponseEntity<?> buscaPorIdade(Integer idade){
 		 Response response = new Response();
+		 
+		 if(idade == null) {
+				response.setMessage("A idade deve ser informada.");
+				response.setStatus(HttpStatus.NOT_FOUND);
+		        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+			}
+		 
 		List<Usuario> retorno= repositoryCustom.buscaPorIdade(idade);
+		
 		if(retorno.isEmpty()) {
 			response.setMessage("Nenhum registro encontrado.");
 			response.setStatus(HttpStatus.NOT_FOUND);
