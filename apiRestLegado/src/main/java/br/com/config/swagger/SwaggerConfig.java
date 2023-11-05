@@ -27,7 +27,8 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("API REST(Legado)")
-                .description("O projeto em questão envolve a criação e aprimoramento de consultas nativas em um aplicativo REST legado. "
+                .description(
+                		  "O projeto em questão envolve a criação e aprimoramento de consultas nativas em um aplicativo REST legado. "
                 		+ "Estou focado em entender como as consultas SQL nativas podem ser usadas para interagir com o banco de dados "
                 		+ "e como isso pode ser aplicado em cenários do mundo real.")
                 .version("1.0.0")
